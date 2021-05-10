@@ -25,6 +25,7 @@ public class ResolutionController {
 	}
 
 	@GetMapping("/resolutions")
+	@PreAuthorize("hasAuthority('resolution:read')")
 	@PostAuthorize("hasAuthority('resolution:read')")
 	@PostFilter("@post.filter(#root)")
 	public Iterable<Resolution> read() {
