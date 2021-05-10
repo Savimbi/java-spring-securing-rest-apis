@@ -13,6 +13,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -39,6 +41,20 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
 		http
 				.authorizeRequests(authz -> authz
 					.anyRequest().authenticated())
-				.httpBasic(basic -> {});
+					.httpBasic(basic -> {})
+					.cors(cors -> {});
+	}
+
+	@Bean
+	WebMvcConfigurer webMvcConfigurer(){
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedOrigins("http://localhost:4000")
+						.allowedHeaders("Authorization")
+						.allowedMethods("HEAD");
+			}
+		};
 	}
 }
