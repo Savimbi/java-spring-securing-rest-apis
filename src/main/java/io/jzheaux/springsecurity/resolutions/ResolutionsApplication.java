@@ -37,7 +37,7 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
 		http
 				.authorizeRequests(authz -> authz
 					.mvcMatchers(GET, "resolutions", "resolution/**").hasAnyAuthority("resolution:read")
-					.anyRequest().hasAuthority("resolutions:write"))
+					.anyRequest().hasAuthority("resolution:write"))
 				.httpBasic(basic -> {});
 	}
 }
