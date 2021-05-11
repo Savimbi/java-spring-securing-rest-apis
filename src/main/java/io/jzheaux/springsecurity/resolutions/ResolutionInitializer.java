@@ -23,13 +23,17 @@ public class ResolutionInitializer implements SmartInitializingSingleton {
 		this.resolutions.save(new Resolution("Hang Christmas Lights", "user"));
 
 		User user = new User("user",GENERAL_PASSWORD);
+		user.setFullName("User Userson");
 		user.grantAuthority("resolution:read");
 		user.grantAuthority("resolution:write");
+		user.grantAuthority("user:read");
 		this.users.save(user);
 
 		User hasread = new User();
 		hasread.setId();
 		hasread.setUsername("hasread");
+		hasread.setFullName("Has Read");
+		hasread.grantAuthority("user:read");
 		hasread.setPassword(GENERAL_PASSWORD);
 		hasread.grantAuthority("resolution:read");
 		this.users.save(hasread);
@@ -37,12 +41,16 @@ public class ResolutionInitializer implements SmartInitializingSingleton {
 		User haswrite = new User();
 		haswrite.setId();
 		haswrite.setUsername("haswrite");
+		haswrite.setFullName("Has Write");
+		haswrite.grantAuthority("user:read");
 		haswrite.setPassword(GENERAL_PASSWORD);
 		haswrite.grantAuthority("resolution:write");
 		this.users.save(haswrite);
 
 		User admin = new User("admin",GENERAL_PASSWORD);
 		admin.grantAuthority("ROLE_ADMIN");
+		admin.setFullName("Admin Adminson");
+		admin.grantAuthority("user:read");
 		this.users.save(admin);
 
 	}
