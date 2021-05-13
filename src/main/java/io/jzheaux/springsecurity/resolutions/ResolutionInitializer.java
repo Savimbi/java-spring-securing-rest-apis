@@ -29,25 +29,25 @@ public class ResolutionInitializer implements SmartInitializingSingleton {
 		user.grantAuthority("user:read");
 		this.users.save(user);
 
-		User hasread = new User();
-		hasread.setId();
-		hasread.setUsername("hasread");
-		hasread.setFullName("Has Read");
-		hasread.grantAuthority("user:read");
-		hasread.setPassword(GENERAL_PASSWORD);
-		hasread.grantAuthority("resolution:read");
-		this.users.save(hasread);
+		User hasRead = new User();
+		hasRead.setId();
+		hasRead.setUsername("hasread");
+		hasRead.setFullName("Has Read");
+		hasRead.grantAuthority("user:read");
+		hasRead.setPassword(GENERAL_PASSWORD);
+		hasRead.grantAuthority("resolution:read");
+		this.users.save(hasRead);
 
-		User haswrite = new User();
-		haswrite.setId();
-		haswrite.setUsername("haswrite");
-		haswrite.setFullName("Has Write");
-		haswrite.grantAuthority("user:read");
-		haswrite.addFriends(hasread);
-		haswrite.setSubscription("premium");
-		haswrite.setPassword(GENERAL_PASSWORD);
-		haswrite.grantAuthority("resolution:write");
-		this.users.save(haswrite);
+		User hasWrite = new User();
+		hasWrite.setId();
+		hasWrite.setUsername("haswrite");
+		hasWrite.setFullName("Has Write");
+		hasWrite.grantAuthority("user:read");
+		hasWrite.setPassword(GENERAL_PASSWORD);
+		hasWrite.grantAuthority("resolution:write");
+		hasWrite.addFriend(hasRead);
+		hasWrite.setSubscription("premium");
+		this.users.save(hasWrite);
 
 		User admin = new User("admin",GENERAL_PASSWORD);
 		admin.grantAuthority("ROLE_ADMIN");

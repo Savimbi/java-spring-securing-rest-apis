@@ -19,7 +19,7 @@ public class User implements Serializable {
     @Column
     String password;
 
-    @Column
+    @Column(name="subscription")
     String subscription;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -47,6 +47,8 @@ public class User implements Serializable {
         this.enabled = user.enabled;
         this.userAuthorities = user.userAuthorities;
         this.fullName = user.fullName;
+        this.subscription = user.subscription;
+        this.friends = user.friends;
     }
     public  Collection<UserAuthority> getUserAuthorities(){
         return  Collections.unmodifiableCollection(this.userAuthorities);
@@ -69,7 +71,7 @@ public class User implements Serializable {
         return friends;
     }
 
-    public void addFriends(User friend) {
+    public void addFriend(User friend) {
         this.friends.add(friend);
     }
 
